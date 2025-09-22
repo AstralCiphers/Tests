@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "xstring": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp"
+    },
+    "git.userName": "ayoub",
+    "git.userEmail": "dystopian2001@gmail.com"
+}
