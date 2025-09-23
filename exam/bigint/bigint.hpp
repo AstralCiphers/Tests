@@ -16,13 +16,12 @@ class bigint {
     std::string getVal() const;
 
     bigint operator+(const bigint &) const;
-    bigint operator+=(const bigint &b);
-    bigint operator-(const bigint &) const;
-    bigint operator++();
+    bigint& operator+=(const bigint &b);
+    bigint& operator++();
     bigint operator++(int);
     bigint operator<<(int) const;
-    bigint operator<<=(int);
-    bigint operator>>=(int);
+    bigint& operator<<=(int);
+    bigint& operator>>=(int);
     bool operator==(const bigint &) const;
     bool operator!=(const bigint &) const;
     bool operator<(const bigint &) const;

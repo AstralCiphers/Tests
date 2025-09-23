@@ -1,6 +1,10 @@
 #include "bigint.hpp"
 
-bigint::bigint() : val("0") {}
+bigint::bigint() : val("0"bigint& bigint::operator<<=(int shift){
+    if (this->val == "0") return *this;
+    this->val.append(shift, '0');
+    return *this;
+}
 //bigint::bigint(const int s) : val(std::to_string(s)) {}
 bigint::bigint(const unsigned int s){
     std::stringstream ss;
@@ -12,10 +16,10 @@ std::string bigint::getVal() const { return val; }
 bigint::bigint(const bigint &b) : val(b.val) {}
 bigint bigint::operator+(const bigint &b) const {
     // Implement addition logic here
-    bigint copy(b);
     std::string result = "";
     std::string s1 = this->val;
-    std::string s2 = copy.val;
+    std::string s2 = b.val;
+    if (s1.size() < s2.size()) std::swap(s1, s2);
     int carry = 0;
     int i = s1.size() - 1;
     int j = s2.size() - 1;
@@ -30,23 +34,21 @@ bigint bigint::operator+(const bigint &b) const {
     }
     return bigint(result);
 }
-bigint bigint::operator+=(const bigint &b){
+bigint& bigint::operator+=(const bigint &b){
     *this = *this + b;
     return *this;
 }
 bigint bigint::operator++(int){
-    bigint one(1);
-    bigint copy(*this);
-    copy = copy + one;
-    return copy;
+    bigint temp(*this);
+    *this += bigint(1);
+    return temp;
 }
-bigint bigint::operator++(){
-    bigint one(1);
-    *this = *this + one;
+bigint& bigint::operator++(){
+    *this += bigint(1);
     return *this;
 }
 bigint bigint::operator<<(int shift) const{
-    if (*this->val == "0") return *this; // Shifting zero remains zero
+    if (this->val == "0") return *this; // Shifting zero remains zero
     bigint copy(*this);
     copy.val.append(shift, '0');
     return copy;
@@ -56,8 +58,8 @@ bigint bigint::operator<<=(int shift){
     this->val.append(shift, '0');
     return *this;
 }
-bigint bigint::operator>>=(int shift){
-    if (*this->val == "0") return *this;
+bigint& bigint::operator>>=(int shift){
+    if (this->val == "0") return *this;
     if(shift >= this->val.size()){
         this->val = "0";
         return *this;
