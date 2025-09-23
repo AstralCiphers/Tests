@@ -1,19 +1,35 @@
-
 #pragma once
+
+#include <string>   
 #include <iostream>
 #include <sstream>
-#include <string>
-#include <ostream>
 
 class bigint {
     private:
-        std::string Val;
+    std::string val;
     public:
-        bigint(const std::string& value) : Val(value) {}
-        friend std::ostream& operator<<(std::ostream& os, const bigint& bg);
-};
+    bigint();
+    bigint(const std::string &);
+    bigint(const unsigned int);
+    bigint(const bigint &);
+    ~bigint();
+    std::string getVal() const;
 
-std::ostream& operator<<(std::ostream& os, const bigint& bg) {
-    os << bg.Val;
-    return os;
-}
+    bigint operator+(const bigint &) const;
+    bigint operator+=(const bigint &b);
+    bigint operator-(const bigint &) const;
+    bigint operator++();
+    bigint operator++(int);
+    bigint operator<<(int) const;
+    bigint operator<<=(int);
+    bigint operator>>=(int);
+    bool operator==(const bigint &) const;
+    bool operator!=(const bigint &) const;
+    bool operator<(const bigint &) const;
+    bool operator<=(const bigint &) const;
+    bool operator>(const bigint &) const;
+    bool operator>=(const bigint &) const;
+
+
+};
+std::ostream & operator<<(std::ostream &, const bigint &);
