@@ -96,7 +96,7 @@ public:
         return *this;
     }
 
-    vect2 operator-() {
+    vect2 operator-() const{
         return vect2(-x, -y);
     }
 
