@@ -10,8 +10,10 @@ public:
     vect2(const vect2& oth) : x(oth.x), y(oth.y) {};
 
     vect2& operator=(const vect2& oth) {
-        x = oth.x;
-        y = oth.y;
+        {
+            x = oth.x;
+            y = oth.y;
+        }
         return *this;
     }
 
